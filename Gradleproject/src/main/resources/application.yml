@@ -1,0 +1,18 @@
+server:
+  port: 888
+spring:
+  datasource:
+    driver-class-name: net.sf.log4jdbc.sql.jdbcapi.DriverSpy
+    password: 1234
+    url: jdbc:log4jdbc:mysql://127.0.0.1:3306/example?useUnicode=true&characterEncoding=utf8&autoReconnect=true&useSSL=false&serverTimezone=UTC
+    username: root
+  mvc:
+    view:
+      prefix: /WEB-INF/view/
+      suffix: .jsp
+  http:
+    encoding:
+      charset: UTF-8
+      enabled: true
+      force: true
+      

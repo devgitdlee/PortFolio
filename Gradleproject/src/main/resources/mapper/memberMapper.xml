@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    
+<mapper namespace="com.demo.mapper.MemberMapper">
+        
+    <select id="selectMemberList" parameterType="com.demo.vo.MemberVO" resultType="com.demo.vo.MemberVO">
+        select * from tbl_member
+    </select>
+    <select id="selectIidcheck" parameterType="string" resultType="int">
+        select count(1) from member where userid = ${"'"+value+"'"}
+    </select>
+    <select id="logincheck" parameterType="string" resultType="int">
+        select count(1) from member where userid = ${"'"+param1+"'"} and userpwd = ${"'"+param2+"'"}
+    </select>
+    <select id="boardselect" parameterType="com.demo.vo.BoardVO" resultType="com.demo.vo.BoardVO">
+        select bId, bname, bTitle, date_format(bdate, '%Y%M%D%H%I%S') as bDate from board order by bdate desc;
+    </select>
+    <select id="boardread" parameterType="int" resultType="com.demo.vo.BoardVO">
+        select bname, btitle, bcontent, bhit, date_format(bdate, '%Y%M%D%H%I%S') as bDate from board where bid = ${value}
+    </select>
+    <select id="callSpjoininsert" statementType="CALLABLE" parameterType="com.demo.vo.MemberVO" resultType="com.demo.vo.ResultType">
+    	{call sp_joinpress(1,
+    					   #{userid}, 
+    					   #{userpasswd}, 
+    					   #{username}, 
+    					   #{gender}, 
+    					   #{phone}, 
+    					   #{birthday}, 
+    					   #{email}, 
+    					   #{address}
+    					  )
+    	}
+    </select>
+	<select id="callSpjoinupdate" statementType="CALLABLE" parameterType="com.demo.vo.MemberVO" resultType="com.demo.vo.ResultType">
+    	{call sp_joinpress(2,
+    					   #{userid}, 
+    					   #{userpasswd}, 
+    					   #{username}, 
+    					   #{gender}, 
+    					   #{phone}, 
+    					   #{birthday}, 
+    					   #{email}, 
+    					   #{address}
+    					  )
+    	}
+    </select>	
+    <select id="callSploginprosess" statementType="CALLABLE" parameterType="string" resultType="com.demo.vo.MemberVO">
+    	{call sp_loginprosess(#{userid},
+    					      #{ipaddr}
+    					     )
+    	}
+    </select>  
+    <select id="callSpboardinsert" statementType="CALLABLE" parameterType="com.demo.vo.BoardVO" resultType="com.demo.vo.BoardVO">
+    	{call sp_boardprosess(1,
+    						  #{bid},
+    						  #{bname},
+    						  #{btitle},
+    						  #{bcontent},
+    						  #{bgroup},
+    						  #{bstep},
+    					      #{bindent}
+    					     )
+    	}
+    </select>   
+</mapper>
