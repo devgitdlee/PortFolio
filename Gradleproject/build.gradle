@@ -47,4 +47,10 @@ dependencies {
    	runtime("mysql:mysql-connector-java")
    	compileOnly("org.projectlombok:lombok")
    	testCompile('org.springframework.boot:spring-boot-starter-test')
+   	
+   	//tiles
+   	//compile group: 'org.apache.tiles', name: 'tiles-jsp', version: '3.0.7'
+   	//compile group: 'org.apache.tiles', name: 'tiles-core', version: '3.0.7'
+   	compile('org.apache.tiles:tiles-jsp:3.0.7')
+   	compile('org.apache.tiles:tiles-core:3.0.7')
 }

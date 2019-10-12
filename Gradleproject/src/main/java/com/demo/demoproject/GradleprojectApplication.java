@@ -29,5 +29,6 @@ public class GradleprojectApplication {
         
         return sessionFactory.getObject();
     }
+	
 
 }

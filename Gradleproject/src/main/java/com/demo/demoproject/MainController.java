@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.demo.config.TilesConfig;
 import com.demo.mapper.MemberMapper;
 import com.demo.vo.BoardVO;
 import com.demo.vo.MemberVO;
@@ -36,14 +37,10 @@ public class MainController {
 	private MemberMapper memMapper;
 
 	//@RequestMapping(value="/")
-	@ResponseBody
 	@RequestMapping("/")
-	public ModelAndView indexView(){
-		ModelAndView mv = new ModelAndView();
-		mv.setViewName("index");
-		
+	public String indexView(){
 		//List<MemberVO> list = memMapper.selectMemberList();
-		return mv;
+		return "index";
 	}
 	
 	@ResponseBody

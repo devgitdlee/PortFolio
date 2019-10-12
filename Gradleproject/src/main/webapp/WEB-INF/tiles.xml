@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE tiles-definitions PUBLIC "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN" "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
+<tiles-definitions>
+    <!-- template -->
+    <definition name="layout.default" template="tiles/default.jsp">
+        <put-attribute name="header" value="tiles/header.jsp" />
+        <put-attribute name="body" value=""/>
+        <put-attribute name="footer" value="tiles/footer.jsp" />
+    </definition>
+    <!-- pages -->
+    <!-- 여기서 name의 index, login은 Controller에서 RequestMapping 할 때 return해주는 page 이름과 맞춰준다. -->
+    <definition name="*/*" extends="layout.default">
+        <put-attribute name="body" value="index.jsp" />
+    </definition>
+    <definition name="login" extends="layout.default">
+        <put-attribute name="body" value="login.jsp" />
+    </definition>
+</tiles-definitions>
